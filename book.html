@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Message by Sourav</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        touch-action: manipulation;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        min-height: 100vh;
+        perspective: 1000px;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+        background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .book {
+        position: relative;
+        display: flex;
+        width: 90vw;
+        max-width: 400px;
+        margin: auto;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+      }
+
+      .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: white;
+        transform-origin: left;
+        transform-style: preserve-3d;
+        transition: transform 0.8s;
+      }
+
+      .front,
+      .back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 1.5em;
+      }
+
+      .back {
+        transform: rotateY(180deg);
+      }
+
+      .emoji {
+        position: absolute;
+        font-size: 2rem;
+        animation: floatEmojis 6s ease-in-out infinite;
+      }
+
+      @keyframes floatEmojis {
+        0% {
+          transform: translateY(100px);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-100px) rotate(20deg);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(100px);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="book" id="book">
+      <div class="page" onclick="flipPage(0)">
+        <div class="front cover">
+          <h1>A Message for You🤍</h1>
+          <p>2025 TO MY SPECIAL PERSON </p>
+        </div>
+        <div class="back">
+          <h2>A Special Beginning ❤️✨</h2>
+          <p>You are truly special to me.</p>
+        </div>
+      </div>
+      <div class="page" onclick="flipPage(1)">
+        <div class="front">
+          <h2>From Strangers to Something Special ❤️✨</h2>
+          <p>You make my days brighter.</p>
+        </div>
+        <div class="back">
+          <h2>The Magic of You ✨💖</h2>
+          <p>You are absolutely amazing.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentPage = 0;
+      function flipPage(index) {
+        const pages = document.querySelectorAll(".page");
+        if (index >= pages.length) return;
+        pages[currentPage].style.transform = "rotateY(-180deg)";
+        currentPage++;
+      }
+    </script>
+  </body>
+</html>

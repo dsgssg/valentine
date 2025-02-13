@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Loading Books by Shobhit...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            flex-direction: column;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            max-width: 90%;
+        }
+
+        .loading-text {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff4d6d, #ff7f7f);
+            padding: 15px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #ff4d6d;
+            border-radius: 50px;
+            animation: load 3s ease-in-out forwards;
+        }
+
+        @keyframes load {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff4d6d, #ff7f7f);
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+        }
+
+        .next-btn:active {
+            transform: scale(0.98);
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-50px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loading-text">Loading Book...</div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <button class="next-btn" onclick="window.location.href='book.html'">NEXT →</button>
+    </div>
+    <script>
+        function createEmoji() {
+            const emojiArray = ['❤️', '💖', '💘', '💕', '💞', '💓', '💗', '😍'];
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 5000);
+        }
+        setInterval(createEmoji, 500);
+    </script>
+</body>
+</html>
